@@ -1,0 +1,50 @@
+{
+  "name": "WatchFaceTest",
+  "author": "MakeAwesomeHappen",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "WatchFaceTest",
+    "uuid": "8aefaec9-9da6-4625-bf99-276718c7e481",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk",
+      "diorite",
+      "emery",
+      "flint"
+    ],
+    "watchapp": {
+      "watchface": true
+    },
+    "messageKeys": [
+      "dummy"
+    ],
+    "resources": {
+      "media": [
+        {
+          "type": "font",
+          "name": "FONT_PERFECT_DOS_48",
+          "file": "fonts/perfect-dos-vga.ttf",
+          "compatibilty": "2.7"
+        },
+        {
+          "type": "font",
+          "name": "FONT_PERFECT_DOS_20",
+          "file": "fonts/perfect-dos-vga.ttf",
+          "compatibilty": "2.7"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_BACKGROUND",
+          "file": "images/background.png"
+        }
+      ]
+    },
+    "companyName": "MrXANA91"
+  }
+}
