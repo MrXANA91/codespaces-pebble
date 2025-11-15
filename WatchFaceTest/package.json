@@ -1,10 +1,14 @@
 {
   "name": "WatchFaceTest",
-  "author": "MakeAwesomeHappen",
+  "author": "MrXANA91",
   "version": "1.0.0",
-  "keywords": ["pebble-app"],
+  "keywords": [
+    "pebble-app"
+  ],
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "pebble-clay": "^1.0.4"
+  },
   "pebble": {
     "displayName": "WatchFaceTest",
     "uuid": "8aefaec9-9da6-4625-bf99-276718c7e481",
@@ -15,14 +19,19 @@
       "basalt",
       "chalk",
       "diorite",
-      "emery",
-      "flint"
+      "emery"
     ],
     "watchapp": {
       "watchface": true
     },
     "messageKeys": [
-      "dummy"
+      "OWMAPIK",
+      "TEMPERATURE",
+      "CONDITIONS"
+    ],
+    "capabilities": [
+      "location",
+      "configurable"
     ],
     "resources": {
       "media": [

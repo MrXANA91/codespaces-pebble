@@ -141,3 +141,7 @@ void main_window_request_update_battery() {
 
     layer_mark_dirty(s_battery_layer);
 }
+
+void main_window_set_weather_text(const char *str) {
+  text_layer_set_text(s_weather_layer, str);
+}
