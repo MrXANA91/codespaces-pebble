@@ -6,6 +6,14 @@ static char weather_layer_buffer[32];
 
 static bool valid_api_key = false;
 
+static void prv_load_settings() {
+    valid_api_key = persist_read_bool(VALID_API_SETTING);
+}
+
+static void prv_save_settings() {
+    persist_write_bool(VALID_API_SETTING, valid_api_key);
+}
+
 static void inbox_received_callback(DictionaryIterator *iterator, void *context) {
     // Read tuples for data
     Tuple *config_tuple = dict_find(iterator, MESSAGE_KEY_OWMAPIK);
@@ -14,8 +22,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 
     // If all data is available, use it
     if (config_tuple) {
-        APP_LOG(APP_LOG_LEVEL_DEBUG, "Received api key : '%s'", config_tuple->value->cstring);
-        if (strcmp(config_tuple->value->cstring, "Enter here your API key") != 0) {
+        if (strcmp(config_tuple->value->cstring, "Enter here your API key") == 0) {
             // no API key has been entered
             APP_LOG(APP_LOG_LEVEL_DEBUG, "No API key");
             valid_api_key = false;
@@ -24,6 +31,8 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
             APP_LOG(APP_LOG_LEVEL_DEBUG, "API key ok!");
             valid_api_key = true;
         }
+
+        prv_save_settings();
     }
     if (temp_tuple && conditions_tuple) {
         snprintf(temperature_buffer, sizeof(temperature_buffer), "%d°C", (int)temp_tuple->value->int32);
@@ -48,6 +57,8 @@ static void outbox_sent_callback(DictionaryIterator *iterator, void *context) {
 }
 
 void weather_init() {
+    prv_load_settings();
+
     app_message_register_inbox_received(inbox_received_callback);
     app_message_register_inbox_dropped(inbox_dropped_callback);
     app_message_register_outbox_failed(outbox_failed_callback);
@@ -60,6 +71,7 @@ void weather_init() {
 
 void weather_tick(struct tm *tick_time) {
     if (!valid_api_key) {
+        APP_LOG(APP_LOG_LEVEL_DEBUG, "Weather tick update cancelled : no valid api key");
         return;
     }
 

@@ -6,11 +6,11 @@
 #include "windows/main_windows.h"
 
 static void init() {
+  weather_init();
   main_window_push();
   
   battery_init();
   watch_init();
-  weather_init();
 }
 
 static void deinit() {

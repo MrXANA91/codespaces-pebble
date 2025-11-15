@@ -3,7 +3,7 @@
   "author": "MrXANA91",
   "version": "1.0.0",
   "keywords": [
-    "pebble-app"
+    "pebble-app", "test", "tutorial", "c", "js", "clay"
   ],
   "private": true,
   "dependencies": {
